@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public abstract class Hogwarts {
     private int magikPower;
     private int transgressionDistance;
@@ -57,8 +59,6 @@ public abstract class Hogwarts {
         if (hogwarts == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");
         }
-//        System.out.println(this);
-//        System.out.println(hogwarts);
         compareBasicAttributes(this, hogwarts);
     }
 
@@ -81,11 +81,18 @@ public abstract class Hogwarts {
         return "Студент: \n" + "Имя: " + name + " " + surname +
                 ", Магическая сила: " + magikPower +
                 ", Расстояние трансгресии: " + transgressionDistance + ".";
-        /*+ "Hogwarts{" +
-                "magikPower=" + magikPower +
-                ", transgressionDistance=" + transgressionDistance +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';*/
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hogwarts hogwarts = (Hogwarts) o;
+        return magikPower == hogwarts.magikPower && transgressionDistance == hogwarts.transgressionDistance && Objects.equals(name, hogwarts.name) && Objects.equals(surname, hogwarts.surname) && Objects.equals(faculty, hogwarts.faculty);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(magikPower, transgressionDistance, name, surname, faculty);
     }
 }

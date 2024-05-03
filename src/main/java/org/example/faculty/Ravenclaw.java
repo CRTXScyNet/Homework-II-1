@@ -3,13 +3,15 @@ package org.example.faculty;
 import org.example.CharacterTraits;
 import org.example.Hogwarts;
 
+import java.util.Objects;
+
 public class Ravenclaw extends Hogwarts {
     private CharacterTraits cleverness;                //Интеллект
     private CharacterTraits wisdom;                //мудры
     private CharacterTraits wit;              //остроумны
     private CharacterTraits creative;              //творчество
     private static final String comparing = "  лучший Когтевранец, чем ";
-    private String faculty = "Когтевран";
+
 
     public Ravenclaw(String name, String surname, int magikPower, int transgressionDistance, int cleverness, int wisdom, int wit, int creative) {
         super(name, surname, magikPower, transgressionDistance);
@@ -18,6 +20,7 @@ public class Ravenclaw extends Hogwarts {
         this.wisdom = new CharacterTraits("мудрость", wisdom);
         this.wit = new CharacterTraits("остроумие", wit);
         this.creative = new CharacterTraits("полон творчества", creative);
+        faculty = "Когтевран";
     }
 
     public Ravenclaw(String name, String surname) {
@@ -54,5 +57,19 @@ compareFacultyAttributes(this,ravenclaw);
                 "; " + wit +
                 "; " + creative +
                 '.';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Ravenclaw ravenclaw = (Ravenclaw) o;
+        return Objects.equals(cleverness, ravenclaw.cleverness) && Objects.equals(wisdom, ravenclaw.wisdom) && Objects.equals(wit, ravenclaw.wit) && Objects.equals(creative, ravenclaw.creative);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), cleverness, wisdom, wit, creative);
     }
 }

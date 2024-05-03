@@ -3,12 +3,13 @@ package org.example.faculty;
 import org.example.CharacterTraits;
 import org.example.Hogwarts;
 
+import java.util.Objects;
+
 public class Hufflepuff extends Hogwarts {
     private CharacterTraits hardworking;                //трудолюбивы
     private CharacterTraits loyalty;                //верность
     private CharacterTraits honesty;              //честность
     private static final String comparing = "  лучший Пуффендуец, чем ";
-    private String faculty = "Пуффендуй";
 
     public Hufflepuff(String name, String surname, int magikPower, int transgressionDistance, int hardworkingValue, int loyaltyValue, int honestyValue) {
         super(name, surname, magikPower, transgressionDistance);
@@ -16,6 +17,7 @@ public class Hufflepuff extends Hogwarts {
         this.hardworking = new CharacterTraits("трудолюбие", hardworkingValue);
         this.loyalty = new CharacterTraits("верность", loyaltyValue);
         this.honesty = new CharacterTraits("честность", honestyValue);
+
     }
 
     public Hufflepuff(String name, String surname) {
@@ -56,5 +58,19 @@ public class Hufflepuff extends Hogwarts {
                 "; " + loyalty +
                 "; " + honesty +
                 '.';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Hufflepuff that = (Hufflepuff) o;
+        return Objects.equals(hardworking, that.hardworking) && Objects.equals(loyalty, that.loyalty) && Objects.equals(honesty, that.honesty);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), hardworking, loyalty, honesty);
     }
 }
