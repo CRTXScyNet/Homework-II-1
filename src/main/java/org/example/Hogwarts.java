@@ -43,7 +43,7 @@ public abstract class Hogwarts {
     public static void checkValidProperty(int... property) {
         for (int i : property) {
             if (i < 0 || i > 100) {
-                throw new IllegalArgumentException("Свойство находится вне допустимого диапазона.");
+                throw new IllegalArgumentException("Ошибка! Свойство находится вне допустимого диапазона.");
             }
         }
 

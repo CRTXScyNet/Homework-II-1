@@ -29,7 +29,6 @@ public class Gryffindor extends Hogwarts {
     private int calculateFacultyAttributes() {
         return nobility.getValue() + honor.getValue() + bravery.getValue();
     }
-
     private static void compareFacultyAttributes(Gryffindor hogwarts1, Gryffindor hogwarts2) {
         if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
             System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
