@@ -8,7 +8,7 @@ public class Ravenclaw extends Hogwarts {
     private CharacterTraits wisdom;                //мудры
     private CharacterTraits wit;              //остроумны
     private CharacterTraits creative;              //творчество
-    private String comparing = "  лучший Когтевранец , чем ";
+    private static final String comparing = "  лучший Когтевранец, чем ";
     private String faculty = "Когтевран";
 
     public Ravenclaw(String name, String surname, int magikPower, int transgressionDistance, int cleverness, int wisdom, int wit, int creative) {
@@ -27,27 +27,32 @@ public class Ravenclaw extends Hogwarts {
         this.wit = new CharacterTraits("остроумие", (int) (Math.random() * 100));
         this.creative = new CharacterTraits("полон творчества", (int) (Math.random() * 100));
     }
-
+    private int calculateFacultyAttributes() {
+        return cleverness.getValue() + wisdom.getValue() + wit.getValue() + creative.getValue();
+    }
+    private static void compareFacultyAttributes(Ravenclaw hogwarts1, Ravenclaw hogwarts2) {
+        if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
+        } else if (hogwarts1.calculateFacultyAttributes() < hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + comparing + hogwarts1.getName() + " " + hogwarts1.getSurname());
+        } else {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны на факультете");
+        }
+    }
     public void compare(Ravenclaw ravenclaw) {
         if (ravenclaw == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");
         }
-        boolean isBetter = this.cleverness.getValue() + this.wisdom.getValue() + this.wit.getValue() + this.creative.getValue() >
-                ravenclaw.cleverness.getValue() + ravenclaw.wisdom.getValue() + ravenclaw.wit.getValue() + ravenclaw.creative.getValue();
-        if (isBetter) {
-            System.out.println(getName() + " " + getSurname() + comparing + ravenclaw.getName() + " " + ravenclaw.getSurname());
-        } else {
-            System.out.println(ravenclaw.getName() + " " + ravenclaw.getSurname() + comparing + getName() + " " + getSurname());
-        }
+compareFacultyAttributes(this,ravenclaw);
     }
 
     @Override
     public String toString() {
         return super.toString() + "\nФакультет: " + faculty +
-                "; : " + cleverness +
-                "; : " + wisdom +
-                "; : " + wit +
-                "; : " + creative +
+                "; " + cleverness +
+                "; " + wisdom +
+                "; " + wit +
+                "; " + creative +
                 '.';
     }
 }

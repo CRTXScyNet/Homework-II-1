@@ -7,7 +7,7 @@ public class Gryffindor extends Hogwarts {
     private CharacterTraits nobility;                //благородство
     private CharacterTraits honor;                //честь
     private CharacterTraits bravery;              //храбрость
-    private String comparing = "  лучший Гриффиндорец , чем ";
+    private static final String comparing = "  лучший Гриффиндорец, чем ";
     private String faculty = "Гриффиндор";
 
 
@@ -26,17 +26,25 @@ public class Gryffindor extends Hogwarts {
         this.bravery = new CharacterTraits("храбрость", (int) (Math.random() * 100));
     }
 
+    private int calculateFacultyAttributes() {
+        return nobility.getValue() + honor.getValue() + bravery.getValue();
+    }
+
+    private static void compareFacultyAttributes(Gryffindor hogwarts1, Gryffindor hogwarts2) {
+        if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
+        } else if (hogwarts1.calculateFacultyAttributes() < hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + comparing + hogwarts1.getName() + " " + hogwarts1.getSurname());
+        } else {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны на факультете");
+        }
+    }
+
     public void compare(Gryffindor gryffindor) {
         if (gryffindor == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");
         }
-        boolean isBetter = this.nobility.getValue() + this.honor.getValue() + this.bravery.getValue() >
-                gryffindor.nobility.getValue() + gryffindor.honor.getValue() + gryffindor.bravery.getValue();
-        if (isBetter) {
-            System.out.println(getName() + " " + getSurname() + comparing + gryffindor.getName() + " " + gryffindor.getSurname());
-        } else {
-            System.out.println(gryffindor.getName() + " " + gryffindor.getSurname() + comparing + getName() + " " + getSurname());
-        }
+        compareFacultyAttributes(this, gryffindor);
     }
 
     @Override

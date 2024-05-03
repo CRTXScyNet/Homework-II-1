@@ -7,7 +7,7 @@ public class Hufflepuff extends Hogwarts {
     private CharacterTraits hardworking;                //трудолюбивы
     private CharacterTraits loyalty;                //верность
     private CharacterTraits honesty;              //честность
-    private String comparing = "  лучший Пуффендуец , чем ";
+    private static final String comparing = "  лучший Пуффендуец, чем ";
     private String faculty = "Пуффендуй";
 
     public Hufflepuff(String name, String surname, int magikPower, int transgressionDistance, int hardworkingValue, int loyaltyValue, int honestyValue) {
@@ -24,7 +24,18 @@ public class Hufflepuff extends Hogwarts {
         this.loyalty = new CharacterTraits("верность", (int) (Math.random() * 100));
         this.honesty = new CharacterTraits("честность", (int) (Math.random() * 100));
     }
-
+    private int calculateFacultyAttributes() {
+        return hardworking.getValue() + loyalty.getValue() + honesty.getValue();
+    }
+    private static void compareFacultyAttributes(Hufflepuff hogwarts1, Hufflepuff hogwarts2) {
+        if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
+        } else if (hogwarts1.calculateFacultyAttributes() < hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + comparing + hogwarts1.getName() + " " + hogwarts1.getSurname());
+        } else {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны на факультете");
+        }
+    }
     public void compare(Hufflepuff hufflepuff) {
         if (hufflepuff == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");

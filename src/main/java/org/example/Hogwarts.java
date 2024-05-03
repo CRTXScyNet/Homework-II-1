@@ -6,7 +6,7 @@ public abstract class Hogwarts {
     private final String name;
     private final String surname;
     protected String faculty = "";
-    private String comparing = " более сильный маг, чем ";
+    private static final String comparing = " более сильный маг, чем ";
 
     public Hogwarts(String name, String surname, int magikPower, int transgressionDistance) {
         checkValidProperty(magikPower, transgressionDistance);
@@ -59,11 +59,20 @@ public abstract class Hogwarts {
         }
 //        System.out.println(this);
 //        System.out.println(hogwarts);
-        boolean isBetter = this.magikPower + this.transgressionDistance > hogwarts.magikPower + hogwarts.transgressionDistance;
-        if (isBetter) {
-            System.out.println(getName() + " " + getSurname() + comparing + hogwarts.getName() + " " + hogwarts.getSurname());
+        compareBasicAttributes(this, hogwarts);
+    }
+
+    private int calculateBasicAttributes() {
+        return magikPower + transgressionDistance;
+    }
+
+    private static void compareBasicAttributes(Hogwarts hogwarts1, Hogwarts hogwarts2) {
+        if (hogwarts1.calculateBasicAttributes() > hogwarts2.calculateBasicAttributes()) {
+            System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
+        } else if (hogwarts1.calculateBasicAttributes() < hogwarts2.calculateBasicAttributes()) {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + comparing + hogwarts1.getName() + " " + hogwarts1.getSurname());
         } else {
-            System.out.println(hogwarts.getName() + " " + hogwarts.getSurname() + comparing + getName() + " " + getSurname());
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны по магической силе");
         }
     }
 

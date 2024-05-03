@@ -9,7 +9,7 @@ public class Slytherin extends Hogwarts {
     private CharacterTraits ambition;              //амбициозность
     private CharacterTraits resourcefulness;              //находчивость
     private CharacterTraits lustForPower;              //жажда власти
-    private String comparing = "  лучший Слизеринец , чем ";
+    private static final String comparing = "  лучший Слизеринец, чем ";
     private String faculty = "Слизерин";
 
     public Slytherin(String name, String surname, int magikPower, int transgressionDistance,
@@ -31,20 +31,24 @@ public class Slytherin extends Hogwarts {
         this.resourcefulness = new CharacterTraits("находчивость", (int) (Math.random() * 100));
         this.lustForPower = new CharacterTraits("жажда власти", (int) (Math.random() * 100));
     }
-
+    private int calculateFacultyAttributes() {
+        return cunning.getValue() + determination.getValue() + ambition.getValue()
+                + resourcefulness.getValue() + lustForPower.getValue();
+    }
+    private static void compareFacultyAttributes(Slytherin hogwarts1, Slytherin hogwarts2) {
+        if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
+        } else if (hogwarts1.calculateFacultyAttributes() < hogwarts2.calculateFacultyAttributes()) {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + comparing + hogwarts1.getName() + " " + hogwarts1.getSurname());
+        } else {
+            System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны на факультете");
+        }
+    }
     public void compare(Slytherin slytherin) {
         if (slytherin == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");
         }
-        boolean isBetter = this.cunning.getValue() + this.determination.getValue() + this.ambition.getValue()
-                + this.resourcefulness.getValue() + this.lustForPower.getValue() >
-                slytherin.cunning.getValue() + slytherin.determination.getValue() + slytherin.ambition.getValue()
-                        + slytherin.resourcefulness.getValue() + slytherin.lustForPower.getValue();
-        if (isBetter) {
-            System.out.println(getName()+ " " + getSurname() + comparing + slytherin.getName() + " " + slytherin.getSurname());
-        } else {
-            System.out.println(slytherin.getName() + " " + slytherin.getSurname() + comparing + getName() + " " + getSurname());
-        }
+compareFacultyAttributes(this,slytherin);
     }
 
     @Override
