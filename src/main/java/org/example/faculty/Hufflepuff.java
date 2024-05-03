@@ -10,8 +10,8 @@ public class Hufflepuff extends Hogwarts {
     private String comparing = "  лучший Пуффендуец , чем ";
     private String faculty = "Пуффендуй";
 
-    public Hufflepuff( String name, String surname, int magikPower, int transgressionDistance,int hardworkingValue, int loyaltyValue, int honestyValue) {
-        super( name, surname, magikPower, transgressionDistance);
+    public Hufflepuff(String name, String surname, int magikPower, int transgressionDistance, int hardworkingValue, int loyaltyValue, int honestyValue) {
+        super(name, surname, magikPower, transgressionDistance);
         checkValidProperty(hardworkingValue, loyaltyValue, honestyValue);
         this.hardworking = new CharacterTraits("трудолюбие", hardworkingValue);
         this.loyalty = new CharacterTraits("верность", loyaltyValue);
@@ -32,7 +32,7 @@ public class Hufflepuff extends Hogwarts {
         boolean isBetter = this.hardworking.getValue() + this.loyalty.getValue() + this.honesty.getValue() >
                 hufflepuff.hardworking.getValue() + hufflepuff.loyalty.getValue() + hufflepuff.honesty.getValue();
         if (isBetter) {
-            System.out.println(getName()+ " " + getSurname() + comparing + hufflepuff.getName() + " " + hufflepuff.getSurname());
+            System.out.println(getName() + " " + getSurname() + comparing + hufflepuff.getName() + " " + hufflepuff.getSurname());
         } else {
             System.out.println(hufflepuff.getName() + " " + hufflepuff.getSurname() + comparing + getName() + " " + getSurname());
         }
