@@ -29,10 +29,13 @@ public class Ravenclaw extends Hogwarts {
         this.wisdom = new CharacterTraits("мудрость", (int) (Math.random() * 100));
         this.wit = new CharacterTraits("остроумие", (int) (Math.random() * 100));
         this.creative = new CharacterTraits("полон творчества", (int) (Math.random() * 100));
+        faculty = "Когтевран";
     }
+
     private int calculateFacultyAttributes() {
         return cleverness.getValue() + wisdom.getValue() + wit.getValue() + creative.getValue();
     }
+
     private static void compareFacultyAttributes(Ravenclaw hogwarts1, Ravenclaw hogwarts2) {
         if (hogwarts1.calculateFacultyAttributes() > hogwarts2.calculateFacultyAttributes()) {
             System.out.println(hogwarts1.getName() + " " + hogwarts1.getSurname() + comparing + hogwarts2.getName() + " " + hogwarts2.getSurname());
@@ -42,11 +45,12 @@ public class Ravenclaw extends Hogwarts {
             System.out.println(hogwarts2.getName() + " " + hogwarts2.getSurname() + " и " + hogwarts1.getName() + " " + hogwarts1.getSurname() + " равны на факультете");
         }
     }
+
     public void compare(Ravenclaw ravenclaw) {
         if (ravenclaw == null) {
             throw new NullPointerException("Ошибка! Студента для сравнения не существует.");
         }
-compareFacultyAttributes(this,ravenclaw);
+        compareFacultyAttributes(this, ravenclaw);
     }
 
     @Override

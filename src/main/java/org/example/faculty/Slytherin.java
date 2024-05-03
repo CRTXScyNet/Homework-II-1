@@ -33,6 +33,7 @@ public class Slytherin extends Hogwarts {
         this.ambition = new CharacterTraits("амбициозность", (int) (Math.random() * 100));
         this.resourcefulness = new CharacterTraits("находчивость", (int) (Math.random() * 100));
         this.lustForPower = new CharacterTraits("жажда власти", (int) (Math.random() * 100));
+        faculty = "Слизерин";
     }
 
     private int calculateFacultyAttributes() {

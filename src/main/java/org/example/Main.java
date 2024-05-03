@@ -8,8 +8,8 @@ import org.example.faculty.Slytherin;
 public class Main {
     public static void main(String[] args) {
 
-        Gryffindor harry = new Gryffindor("Гарри", "Поттер", 34, 63, 1, 1, 1);
-        Gryffindor hermione = new Gryffindor("Гермиона", "Грейнджер", 77, 77, 77, 77, 77);
+        Gryffindor harry = new Gryffindor("Гарри", "Поттер");
+        Gryffindor hermione = new Gryffindor("Гермиона", "Грейнджер");
         Gryffindor ron = new Gryffindor("Рон", "Уизли");
 
         Slytherin draco = new Slytherin("Драко", "Малфой");
@@ -25,14 +25,18 @@ public class Main {
         Ravenclaw markus = new Ravenclaw("Маркус", "Белби", 34, 1, 34, 75, 8, 45);
 
 
-        zaharia.compare(sedric);
-        hermione.compareAnyStudents(draco);
-        harry.compareAnyStudents(ron);
-        chjow.compare(padma);
-        chjow.compareAnyStudents(grehem);
-        System.out.println(gregory);
-        System.out.println(jastin);
+
+        System.out.println(harry);
+        System.out.println();
+        System.out.println(hermione);
+        System.out.println();
+        harry.compare(hermione);
+        System.out.println();
         System.out.println(markus);
+        System.out.println();
+        System.out.println(zaharia);
+        System.out.println();
+        markus.compareAnyStudents(zaharia);
     }
     //faculty
     //gryffindor slytherin hufflepuff ravenclaw
